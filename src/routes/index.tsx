@@ -19,22 +19,26 @@ import {
   Check,
 } from "lucide-react";
 
-import heroImg from "@/assets/hero.jpg";
-import shopImg from "@/assets/shop.jpg";
+import heroImg from "@/assets/workshop-hero.jpg";
+import shopImg from "@/assets/workshop-exterior.jpg";
+import teamServiceImg from "@/assets/team-service.jpg";
+import teamCareImg from "@/assets/team-care.jpg";
+import teamDiagnosticsImg from "@/assets/team-diagnostics.jpg";
+import teamChassisImg from "@/assets/team-chassis.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Autoservis Vesmír Hradec Králové — servis, diagnostika, pneuservis" },
+      { title: "Vektor Auto Hradec Králové — kompletní autoservis" },
       {
         name: "description",
         content:
-          "Špičková péče o vaše vozidlo za skvělou cenu. Rychlý servis, čištění DPF, geometrie kol, pneuservis a klimatizace v Hradci Králové.",
+          "Spolehlivý servis vozů v Hradci Králové. Diagnostika, pravidelná údržba, pneuservis, geometrie i klimatizace na jednom místě.",
       },
-      { property: "og:title", content: "Autoservis Vesmír — Hradec Králové" },
+      { property: "og:title", content: "Vektor Auto — autoservis Hradec Králové" },
       {
         property: "og:description",
-        content: "Moderní autoservis: diagnostika Bosch a Texa, pneuservis, DPF, klimatizace.",
+        content: "Poctivý autoservis s moderním vybavením a srozumitelným přístupem.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -79,7 +83,7 @@ const NAV = [
   { href: "#kontakty", label: "Kontakty" },
 ];
 
-const PHONE = "+420 774 219 169";
+const PHONE = "+420 777 000 111";
 
 /* ---------- sections ---------- */
 
@@ -89,7 +93,7 @@ function Header() {
     <header className="pointer-events-none absolute inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-6">
       <div className="pointer-events-auto mx-auto flex max-w-6xl items-center gap-4 rounded-full border border-white/15 bg-black/35 px-5 py-3 backdrop-blur-xl">
         <a href="#" className="text-lg font-extrabold tracking-tight text-white">
-          Vesmír
+          VEKTOR AUTO
         </a>
         <nav className="ml-auto hidden items-center gap-7 lg:flex">
           {NAV.map((n) => (
@@ -255,7 +259,7 @@ function ContactForm({ compact = false }: { compact?: boolean }) {
 
 function Hero() {
   return (
-    <section className="relative isolate min-h-[100svh] overflow-hidden">
+    <section className="relative isolate flex min-h-[92svh] items-center overflow-hidden">
       <img
         src={heroImg}
         alt="Mechanik pracující pod zvednutým vozem v autoservisu"
@@ -263,25 +267,26 @@ function Hero() {
         height={1088}
         className="absolute inset-0 -z-10 size-full object-cover"
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/85 via-black/55 to-black/70" />
+      <div className="absolute inset-0 -z-10 bg-black/55" />
 
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-16 pt-32 sm:px-6 lg:grid-cols-[1.1fr_minmax(0,420px)] lg:items-end lg:pt-44">
-        <div className="animate-fade-in">
-          <h1 className="max-w-2xl text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
-            Špičková péče o vaše vozidlo za skvělou cenu, rychle a kvalitně.
+      <div className="mx-auto w-full max-w-6xl px-4 pb-14 pt-32 text-center sm:px-6">
+        <div className="mx-auto max-w-4xl animate-fade-in">
+          <p className="mb-5 text-sm font-bold uppercase text-white/75">Autoservis v Hradci Králové</p>
+          <h1 className="text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-7xl">
+            Váš vůz. Naše odpovědnost.
           </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
+            Servisujeme osobní i užitkové vozy pečlivě, transparentně a bez zbytečného čekání.
+          </p>
           <a
             href="#kontakty"
-            className="group mt-8 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 py-2 pl-6 pr-2 text-sm font-bold text-white backdrop-blur-md transition-colors hover:bg-white/20"
+            className="group mt-9 inline-flex items-center gap-3 rounded-full bg-primary py-2 pl-6 pr-2 text-sm font-bold text-primary-foreground transition-transform hover:scale-[1.03]"
           >
-            Konzultace a kalkulace nákladů
-            <span className="grid size-10 place-items-center rounded-full bg-primary transition-transform group-hover:translate-x-1">
+            Objednat termín servisu
+            <span className="grid size-10 place-items-center rounded-full bg-primary-foreground/20 transition-transform group-hover:translate-x-1">
               <ArrowRight className="size-4" />
             </span>
           </a>
-        </div>
-        <div className="animate-scale-in">
-          <ContactForm compact />
         </div>
       </div>
     </section>
@@ -289,9 +294,9 @@ function Hero() {
 }
 
 const FACTS = [
-  "Jako jediní v ČR využíváme vibrační diagnostiku podvozku, která odhalí i skryté závady. Díky Texa a Bosch přístrojům zajišťujeme rychlé a přesné výsledky.",
-  "Za naším servisem stojí zkušený tým odborníků, kteří se neustále vzdělávají a sledují nejnovější trendy v automobilovém průmyslu.",
-  "Každý zákazník je pro nás prioritou — nasloucháme, doporučujeme a hledáme nejefektivnější řešení na míru.",
+  "Moderní diagnostika nám pomáhá rychle odhalit příčinu závady a navrhnout opravu, která dává smysl.",
+  "Pracujeme podle ověřených postupů a před každým zásahem vám srozumitelně vysvětlíme rozsah i cenu.",
+  "Ke každému vozu přistupujeme individuálně. Doporučíme jen práci, kterou váš automobil skutečně potřebuje.",
 ];
 
 function About() {
@@ -304,8 +309,7 @@ function About() {
         className="mt-6 max-w-4xl text-3xl font-extrabold leading-[1.1] sm:text-4xl lg:text-5xl"
         data-reveal
       >
-        <span className="text-primary">Autoservis Vesmír</span> spojuje preciznost, moderní
-        technologie a individuální přístup
+        <span className="text-primary">Vektor Auto</span> znamená jistotu na každém kilometru
       </h2>
 
       <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16">
@@ -320,7 +324,7 @@ function About() {
           />
           <div className="absolute inset-x-4 bottom-4 flex items-center gap-2 rounded-full bg-black/40 px-5 py-3 text-sm text-white backdrop-blur-md">
             <MapPin className="size-4 shrink-0" />
-            <span className="truncate">Pražská tř. 559/9, 500 04 Hradec Králové 4</span>
+             <span className="truncate">Brněnská 700/25, Hradec Králové</span>
           </div>
         </div>
 
@@ -345,32 +349,32 @@ const SERVICES = [
   {
     icon: Wrench,
     title: "Rychlý servis",
-    text: "Pravidelná údržba: výměna oleje, diagnostika a rychlé opravy.",
+    text: "Olej, filtry, brzdy a běžné opravy vyřešíme rychle a pečlivě.",
   },
   {
     icon: Filter,
     title: "Čištění DPF",
-    text: "Rychlé čištění DPF a katalyzátorů s videopotvrzením.",
+    text: "Obnovíme správnou funkci filtru a prověříme celý výfukový systém.",
   },
   {
     icon: Gauge,
     title: "Geometrie kol",
-    text: "Přesné nastavení odklonu pro bezpečnost a dlouhou životnost pneumatik.",
+    text: "Přesné nastavení náprav pro klidné řízení a rovnoměrné opotřebení pneu.",
   },
   {
     icon: CircleDot,
     title: "Pneuservis",
-    text: "Přezouvání a vyvažování kol s moderní technologií pro bezpečnou jízdu.",
+    text: "Kompletní přezutí, vyvážení i kontrola stavu pneumatik.",
   },
   {
     icon: Disc3,
     title: "Renovace kol",
-    text: "Rovnání pokřivených kol na počkání! CNC opravy a profesionální práškové lakování.",
+    text: "Oprava poškozených disků, rovnání a profesionální povrchová úprava.",
   },
   {
     icon: Wind,
     title: "Servis klimatizace",
-    text: "Diagnostika a údržba klimatizace pro maximální výkon a čistý vzduch ve vozidle.",
+    text: "Kontrola těsnosti, doplnění chladiva a dezinfekce celého systému.",
   },
 ];
 
@@ -383,16 +387,16 @@ function Services() {
         </p>
         <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
           <h2 className="text-3xl font-extrabold leading-[1.1] sm:text-4xl lg:text-5xl" data-reveal>
-            Naše odbornost,
+            Kompletní péče,
             <br />
-            <span className="text-primary">vaše jistota!</span>
+            <span className="text-primary">jeden spolehlivý servis</span>
           </h2>
           <a
             href="#kontakty"
             data-reveal
             className="group inline-flex items-center gap-3 rounded-full bg-primary py-2 pl-6 pr-2 text-sm font-bold text-primary-foreground transition-transform hover:scale-[1.03]"
           >
-            Konzultace a kalkulace nákladů
+            Nezávazně se objednat
             <span className="grid size-9 place-items-center rounded-full bg-primary-foreground/20 transition-transform group-hover:translate-x-1">
               <ArrowRight className="size-4" />
             </span>
@@ -420,10 +424,10 @@ function Services() {
 }
 
 const TEAM = [
-  { name: "Dominik Bičiště", role: "Vedoucí autoservisu" },
-  { name: "Vladimír Palinkaš", role: "Vedoucí mechanik" },
-  { name: "Mikuláš Stepaněnko", role: "Mladší mechanik" },
-  { name: "Julie Uchaň", role: "Administrátorka" },
+  { title: "Servisní technik", text: "Pravidelná údržba a mechanické opravy", image: teamServiceImg },
+  { title: "Péče o zákazníky", text: "Objednávky, kalkulace a předání vozu", image: teamCareImg },
+  { title: "Diagnostický specialista", text: "Elektronika a přesná diagnostika závad", image: teamDiagnosticsImg },
+  { title: "Specialista podvozku", text: "Pneumatiky, geometrie a zavěšení kol", image: teamChassisImg },
 ];
 
 function Team() {
@@ -436,37 +440,21 @@ function Team() {
         className="mt-6 max-w-3xl text-3xl font-extrabold leading-[1.1] sm:text-4xl lg:text-5xl"
         data-reveal
       >
-        <span className="text-primary">Profesionálové,</span> kteří se o vaše vozidlo postarají s
-        maximální péčí
+        <span className="text-primary">Specialisté,</span> na které se můžete spolehnout
       </h2>
 
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {TEAM.map((m, i) => (
+        {TEAM.map((m) => (
           <article
-            key={m.name}
+            key={m.title}
             data-reveal
-            className={`rounded-3xl border p-4 transition-transform duration-300 hover:-translate-y-1 ${
-              i === 0
-                ? "border-primary bg-primary text-primary-foreground"
-                : "border-primary/40 bg-card"
-            }`}
+            className="overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl"
           >
-            <div
-              className={`grid aspect-[4/3] place-items-center rounded-2xl text-4xl font-extrabold ${
-                i === 0 ? "bg-primary-foreground/15" : "bg-secondary text-primary"
-              }`}
-            >
-              {m.name
-                .split(" ")
-                .map((p) => p[0])
-                .join("")}
+            <img src={m.image} alt={m.title} loading="lazy" width={912} height={1104} className="aspect-[4/5] w-full object-cover" />
+            <div className="p-5">
+              <h3 className="text-lg font-bold">{m.title}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{m.text}</p>
             </div>
-            <h3 className="mt-5 text-lg font-bold">{m.name}</h3>
-            <p
-              className={`mt-1 text-sm ${i === 0 ? "text-primary-foreground/80" : "text-muted-foreground"}`}
-            >
-              {m.role}
-            </p>
           </article>
         ))}
       </div>
@@ -508,14 +496,13 @@ function Certificates() {
         </p>
         <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:items-start">
           <h2 className="text-3xl font-extrabold leading-[1.1] sm:text-4xl lg:text-5xl" data-reveal>
-            Naše odbornost,
+            Odbornost potvrzená,
             <br />
-            <span className="text-primary">vaše jistota!</span>
+            <span className="text-primary">praxí i vzděláním</span>
           </h2>
           <p className="max-w-md text-sm leading-relaxed text-muted-foreground" data-reveal>
-            Jsme hrdí na naše certifikáty a diplomy, které potvrzují naši profesionalitu a vysoký
-            standard služeb. Neustále se vzděláváme, abychom vám mohli nabídnout ty nejlepší
-            technologie a servis.
+            Pravidelně se školíme v diagnostice, klimatizacích i opravách moderních vozů. Nové
+            znalosti přenášíme přímo do každodenní práce.
           </p>
         </div>
 
@@ -570,13 +557,12 @@ function Place() {
         className="mt-6 max-w-3xl text-3xl font-extrabold leading-[1.1] sm:text-4xl lg:text-5xl"
         data-reveal
       >
-        <span className="text-primary">Najdete nás</span> na strategickém místě s pohodlným
-        parkováním
+        <span className="text-primary">Přijeďte pohodlně</span> a vůz nechte v dobrých rukou
       </h2>
       <div className="mt-12 overflow-hidden rounded-3xl border border-border" data-reveal>
         <iframe
           title="Mapa — Autoservis Vesmír"
-          src="https://www.google.com/maps?q=Pra%C5%BEsk%C3%A1%20t%C5%99%C3%ADda%20559%2F9%2C%20500%2004%20Hradec%20Kr%C3%A1lov%C3%A9&output=embed"
+          src="https://www.google.com/maps?q=Brn%C4%9Bnsk%C3%A1%20700%2F25%2C%20Hradec%20Kr%C3%A1lov%C3%A9&output=embed"
           loading="lazy"
           className="h-[380px] w-full sm:h-[460px]"
         />
@@ -597,16 +583,15 @@ function Contact() {
             className="mt-6 text-3xl font-extrabold leading-[1.1] sm:text-4xl lg:text-5xl"
             data-reveal
           >
-            Domluvte si termín <span className="text-primary">ještě dnes</span>
+            Domluvte si návštěvu <span className="text-primary">bez čekání</span>
           </h2>
 
           <ul className="mt-10 space-y-5">
             {[
               { icon: Phone, label: PHONE, href: `tel:${PHONE.replace(/\s/g, "")}` },
-              { icon: Phone, label: "+420 721 477 459", href: "tel:+420721477459" },
-              { icon: Mail, label: "info@autoservisvesmir.cz", href: "mailto:info@autoservisvesmir.cz" },
-              { icon: MapPin, label: "Pražská tř. 559/9, 500 04 Hradec Králové 4" },
-              { icon: Clock, label: "Po – Pá: 8:00 – 16:00" },
+              { icon: Mail, label: "servis@vektorauto.cz", href: "mailto:servis@vektorauto.cz" },
+              { icon: MapPin, label: "Brněnská 700/25, Hradec Králové" },
+              { icon: Clock, label: "Pondělí–pátek: 8:00–17:00" },
             ].map((c) => (
               <li key={c.label} className="flex items-center gap-4" data-reveal>
                 <span className="grid size-11 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
@@ -636,8 +621,8 @@ function Footer() {
   return (
     <footer className="border-t border-border py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-sm text-muted-foreground sm:flex-row sm:px-6">
-        <span className="text-base font-extrabold text-foreground">Vesmír</span>
-        <span>© {new Date().getFullYear()} Autoservis Vesmír s.r.o. — Hradec Králové</span>
+        <span className="text-base font-extrabold text-foreground">VEKTOR AUTO</span>
+        <span>© {new Date().getFullYear()} Vektor Auto — Hradec Králové</span>
       </div>
     </footer>
   );
