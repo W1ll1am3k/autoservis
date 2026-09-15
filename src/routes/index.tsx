@@ -17,6 +17,7 @@ import {
   Menu,
   X,
   Check,
+  ArrowUp,
 } from "lucide-react";
 
 import heroAsset from "@/assets/cdn/workshop-hero.jpg.asset.json";
@@ -25,6 +26,9 @@ import teamServiceAsset from "@/assets/cdn/team-service.jpg.asset.json";
 import teamCareAsset from "@/assets/cdn/team-care.jpg.asset.json";
 import teamDiagnosticsAsset from "@/assets/cdn/team-diagnostics.jpg.asset.json";
 import teamChassisAsset from "@/assets/cdn/team-chassis.jpg.asset.json";
+import certificateClimateImg from "@/assets/certificate-climate.jpg";
+import certificateDiagnosticsImg from "@/assets/certificate-diagnostics.jpg";
+import certificateChassisImg from "@/assets/certificate-chassis.jpg";
 
 const heroImg = heroAsset.url;
 const shopImg = shopAsset.url;
@@ -124,34 +128,49 @@ function Header() {
           type="button"
           aria-label="Menu"
           onClick={() => setOpen((v) => !v)}
-          className="ml-auto grid size-10 shrink-0 place-items-center rounded-full bg-white/10 text-white lg:hidden"
+          className="grid size-10 shrink-0 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 sm:ml-0 lg:hidden"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
       </div>
 
-      {open && (
-        <div className="pointer-events-auto mx-auto mt-2 max-w-6xl animate-fade-in rounded-3xl border border-white/15 bg-black/70 p-4 backdrop-blur-xl lg:hidden">
+      <div
+        aria-hidden={!open}
+        className={`pointer-events-auto mx-auto grid max-w-6xl overflow-hidden transition-all duration-500 ease-out lg:hidden ${
+          open ? "mt-2 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="min-h-0">
+          <div className="rounded-3xl border border-white/15 bg-black/70 p-4 backdrop-blur-xl">
           <div className="flex flex-col">
-            {NAV.map((n) => (
+            {NAV.map((n, index) => (
               <a
                 key={n.href}
                 href={n.href}
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-3 py-3 text-base font-medium text-white/90 hover:bg-white/10"
+                tabIndex={open ? 0 : -1}
+                style={{ transitionDelay: open ? `${100 + index * 70}ms` : "0ms" }}
+                className={`rounded-xl px-3 py-3 text-base font-medium text-white/90 transition-all duration-300 hover:bg-white/10 ${
+                  open ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
+                }`}
               >
                 {n.label}
               </a>
             ))}
             <a
               href={`tel:${PHONE.replace(/\s/g, "")}`}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground"
+              tabIndex={open ? 0 : -1}
+              style={{ transitionDelay: open ? `${100 + NAV.length * 70}ms` : "0ms" }}
+              className={`mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition-all duration-300 ${
+                open ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
+              }`}
             >
               <Phone className="size-4" /> {PHONE}
             </a>
           </div>
         </div>
-      )}
+        </div>
+      </div>
     </header>
   );
 }
@@ -474,16 +493,19 @@ const CERTS = [
     title: "Certifikát o odborném školení v oblasti autoklimatizace",
     text: "Tento certifikát potvrzuje absolvování odborného školení v oblasti autoklimatizace a obnovy fluorovaných skleníkových plynů. Mykola Stepanenko se kvalifikoval k provádění činností spojených s těmito technologiemi.",
     meta: "LKQ Academy · 04.03.2025, Praha",
+    image: certificateClimateImg,
   },
   {
     title: "Certifikát o odborném školení v oblasti autoklimatizace",
     text: "Certifikát vydaný Vitalii Bereshovi potvrzuje absolvování školení zaměřeného na obnovu fluorovaných skleníkových plynů v autoklimatizacích. Nezbytný pro odborníky v této oblasti.",
     meta: "LKQ Academy · 17.04.2024, Praha",
+    image: certificateDiagnosticsImg,
   },
   {
     title: "Osvědčení o diagnostice podvozku",
     text: "Školení zaměřené na vibrační diagnostiku podvozku a práci s měřicími přístroji Texa a Bosch pro přesné odhalení skrytých závad.",
     meta: "Texa Academy · 2024",
+    image: certificateChassisImg,
   },
 ];
 
@@ -520,13 +542,25 @@ function Certificates() {
           {CERTS.map((c) => (
             <article
               key={c.meta}
-              className="min-w-[85%] snap-start rounded-3xl border border-primary/40 bg-card p-7 sm:min-w-[60%] lg:min-w-[48%]"
+              className="grid min-w-[92%] snap-start overflow-hidden rounded-3xl border border-primary/40 bg-card sm:min-w-[78%] md:grid-cols-[1fr_0.72fr] lg:min-w-full"
             >
-              <h3 className="text-xl font-bold leading-snug">{c.title}</h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{c.text}</p>
-              <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-primary">
-                {c.meta}
-              </p>
+              <div className="flex flex-col justify-center p-7 sm:p-9 lg:p-12">
+                <h3 className="text-xl font-bold leading-snug sm:text-2xl">{c.title}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{c.text}</p>
+                <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-primary">
+                  {c.meta}
+                </p>
+              </div>
+              <div className="flex min-h-80 items-center justify-center bg-muted/40 p-5 sm:p-7">
+                <img
+                  src={c.image}
+                  alt={`Náhled dokumentu: ${c.title}`}
+                  loading="lazy"
+                  width={768}
+                  height={1024}
+                  className="max-h-[430px] w-auto rounded-lg border border-border object-contain shadow-lg"
+                />
+              </div>
             </article>
           ))}
         </div>
@@ -687,6 +721,30 @@ function Footer() {
   );
 }
 
+function ScrollToTop() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const updateVisibility = () => setVisible(window.scrollY > 500);
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    return () => window.removeEventListener("scroll", updateVisibility);
+  }, []);
+
+  return (
+    <button
+      type="button"
+      aria-label="Zpět nahoru"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      className={`fixed bottom-5 right-5 z-50 grid size-12 place-items-center rounded-full bg-primary text-primary-foreground shadow-xl transition-all duration-300 hover:-translate-y-1 sm:bottom-7 sm:right-7 ${
+        visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
+      }`}
+    >
+      <ArrowUp className="size-5" />
+    </button>
+  );
+}
+
 function Index() {
   const ref = useReveal();
   return (
@@ -702,6 +760,7 @@ function Index() {
         <Contact />
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }
