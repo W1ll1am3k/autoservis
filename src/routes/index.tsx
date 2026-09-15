@@ -128,7 +128,7 @@ function Header() {
           type="button"
           aria-label="Menu"
           onClick={() => setOpen((v) => !v)}
-          className="grid size-10 shrink-0 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 sm:ml-0 lg:hidden"
+          className="ml-auto grid size-10 shrink-0 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 sm:ml-0 lg:hidden"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
