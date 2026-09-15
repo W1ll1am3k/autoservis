@@ -36,13 +36,13 @@ const teamChassisImg = teamChassisAsset.url;
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vektor Auto Hradec Králové — kompletní autoservis" },
+      { title: "Autoservis Jméno Místo — kompletní autoservis" },
       {
         name: "description",
         content:
-          "Spolehlivý servis vozů v Hradci Králové. Diagnostika, pravidelná údržba, pneuservis, geometrie i klimatizace na jednom místě.",
+          "Spolehlivý servis vozů v Místě. Diagnostika, pravidelná údržba, pneuservis, geometrie i klimatizace na jednom místě.",
       },
-      { property: "og:title", content: "Vektor Auto — autoservis Hradec Králové" },
+      { property: "og:title", content: "Autoservis Jméno — autoservis Místo" },
       {
         property: "og:description",
         content: "Poctivý autoservis s moderním vybavením a srozumitelným přístupem.",
@@ -90,7 +90,7 @@ const NAV = [
   { href: "#kontakty", label: "Kontakty" },
 ];
 
-const PHONE = "+420 777 000 111";
+const PHONE = "+420 777 777 777";
 
 /* ---------- sections ---------- */
 
@@ -100,7 +100,7 @@ function Header() {
     <header className="pointer-events-none absolute inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-6">
       <div className="pointer-events-auto mx-auto flex max-w-6xl items-center gap-4 rounded-full border border-white/15 bg-black/35 px-5 py-3 backdrop-blur-xl">
         <a href="#" className="text-lg font-extrabold tracking-tight text-white">
-          VEKTOR AUTO
+          AUTOSERVIS JMÉNO
         </a>
         <nav className="ml-auto hidden items-center gap-7 lg:flex">
           {NAV.map((n) => (
@@ -278,7 +278,7 @@ function Hero() {
 
       <div className="mx-auto w-full max-w-6xl px-4 pb-14 pt-32 text-center sm:px-6">
         <div className="mx-auto max-w-4xl animate-fade-in">
-          <p className="mb-5 text-sm font-bold uppercase text-white/75">Autoservis v Hradci Králové</p>
+          <p className="mb-5 text-sm font-bold uppercase text-white/75">Autoservis v Místě</p>
           <h1 className="text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-7xl">
             Váš vůz. Naše odpovědnost.
           </h1>
@@ -316,14 +316,14 @@ function About() {
         className="mt-6 max-w-4xl text-3xl font-extrabold leading-[1.1] sm:text-4xl lg:text-5xl"
         data-reveal
       >
-        <span className="text-primary">Vektor Auto</span> znamená jistotu na každém kilometru
+        <span className="text-primary">Autoservis Jméno</span> znamená jistotu na každém kilometru
       </h2>
 
       <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16">
         <div className="relative overflow-hidden rounded-3xl" data-reveal>
           <img
             src={shopImg}
-            alt="Budova autoservisu Vesmír"
+            alt="Budova autoservisu"
             loading="lazy"
             width={1024}
             height={1280}
@@ -331,7 +331,7 @@ function About() {
           />
           <div className="absolute inset-x-4 bottom-4 flex items-center gap-2 rounded-full bg-black/40 px-5 py-3 text-sm text-white backdrop-blur-md">
             <MapPin className="size-4 shrink-0" />
-             <span className="truncate">Brněnská 700/25, Hradec Králové</span>
+             <span className="truncate">Adresa</span>
           </div>
         </div>
 
@@ -568,8 +568,8 @@ function Place() {
       </h2>
       <div className="mt-12 overflow-hidden rounded-3xl border border-border" data-reveal>
         <iframe
-          title="Mapa — Autoservis Vesmír"
-          src="https://www.google.com/maps?q=Brn%C4%9Bnsk%C3%A1%20700%2F25%2C%20Hradec%20Kr%C3%A1lov%C3%A9&output=embed"
+          title="Mapa — Autoservis Jméno"
+          src="https://www.google.com/maps?q=Adresa&output=embed"
           loading="lazy"
           className="h-[380px] w-full sm:h-[460px]"
         />
@@ -596,8 +596,8 @@ function Contact() {
           <ul className="mt-10 space-y-5">
             {[
               { icon: Phone, label: PHONE, href: `tel:${PHONE.replace(/\s/g, "")}` },
-              { icon: Mail, label: "servis@vektorauto.cz", href: "mailto:servis@vektorauto.cz" },
-              { icon: MapPin, label: "Brněnská 700/25, Hradec Králové" },
+              { icon: Mail, label: "info@autoservis-jmeno.cz", href: "mailto:info@autoservis-jmeno.cz" },
+              { icon: MapPin, label: "Adresa" },
               { icon: Clock, label: "Pondělí–pátek: 8:00–17:00" },
             ].map((c) => (
               <li key={c.label} className="flex items-center gap-4" data-reveal>
@@ -626,10 +626,62 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-sm text-muted-foreground sm:flex-row sm:px-6">
-        <span className="text-base font-extrabold text-foreground">VEKTOR AUTO</span>
-        <span>© {new Date().getFullYear()} Vektor Auto — Hradec Králové</span>
+    <footer className="border-t border-border bg-secondary/30 py-14">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <span className="text-lg font-extrabold text-foreground">AUTOSERVIS JMÉNO</span>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Moderní autoservis s lidským přístupem a poctivým řemeslem.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-sm font-bold uppercase tracking-wider text-foreground">Sekce</h4>
+            <ul className="mt-4 space-y-2">
+              {NAV.map((n) => (
+                <li key={n.href}>
+                  <a
+                    href={n.href}
+                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    {n.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-sm font-bold uppercase tracking-wider text-foreground">Kontakt</h4>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <a
+                  href={`tel:${PHONE.replace(/\s/g, "")}`}
+                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                >
+                  {PHONE}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:info@autoservis-jmeno.cz"
+                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                >
+                  info@autoservis-jmeno.cz
+                </a>
+              </li>
+              <li>
+                <span className="text-sm text-muted-foreground">Adresa</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-sm font-bold uppercase tracking-wider text-foreground">Otevírací doba</h4>
+            <p className="mt-4 text-sm text-muted-foreground">Pondělí–pátek: 8:00–17:00</p>
+          </div>
+        </div>
+        <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
+          © {new Date().getFullYear()} Autoservis Jméno — Místo
+        </div>
       </div>
     </footer>
   );
