@@ -20,22 +20,15 @@ import {
   ArrowUp,
 } from "lucide-react";
 
-import heroAsset from "@/assets/cdn/workshop-hero.jpg.asset.json";
-import shopAsset from "@/assets/cdn/workshop-exterior.jpg.asset.json";
-import teamServiceAsset from "@/assets/cdn/team-service.jpg.asset.json";
-import teamCareAsset from "@/assets/cdn/team-care.jpg.asset.json";
-import teamDiagnosticsAsset from "@/assets/cdn/team-diagnostics.jpg.asset.json";
-import teamChassisAsset from "@/assets/cdn/team-chassis.jpg.asset.json";
+import heroImg from "@/assets/workshop-hero.jpg";
+import shopImg from "@/assets/workshop-exterior.jpg";
+import teamServiceImg from "@/assets/team-service.jpg";
+import teamCareImg from "@/assets/team-care.jpg";
+import teamDiagnosticsImg from "@/assets/team-diagnostics.jpg";
+import teamChassisImg from "@/assets/team-chassis.jpg";
 import certificateClimateImg from "@/assets/certificate-climate.jpg";
 import certificateDiagnosticsImg from "@/assets/certificate-diagnostics.jpg";
 import certificateChassisImg from "@/assets/certificate-chassis.jpg";
-
-const heroImg = heroAsset.url;
-const shopImg = shopAsset.url;
-const teamServiceImg = teamServiceAsset.url;
-const teamCareImg = teamCareAsset.url;
-const teamDiagnosticsImg = teamDiagnosticsAsset.url;
-const teamChassisImg = teamChassisAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
