@@ -510,6 +510,108 @@ function Certificates() {
     el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const el = scroller.current;
+    if (!el) return;
+
+    let pointerId: number | null = null;
+    let startX = 0;
+    let startScroll = 0;
+    let moved = false;
+    let lastX = 0;
+    let lastTime = 0;
+    let velocity = 0;
+    let raf = 0;
+
+    const stopMomentum = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    };
+
+    const onDown = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      stopMomentum();
+      pointerId = e.pointerId;
+      startX = e.clientX;
+      lastX = e.clientX;
+      lastTime = performance.now();
+      velocity = 0;
+      moved = false;
+      startScroll = el.scrollLeft;
+      el.style.scrollSnapType = "none";
+      el.style.cursor = "grabbing";
+    };
+
+    const onMove = (e: PointerEvent) => {
+      if (pointerId !== e.pointerId) return;
+      const dx = e.clientX - startX;
+      if (!moved && Math.abs(dx) > 3) {
+        moved = true;
+        el.setPointerCapture(e.pointerId);
+      }
+      if (!moved) return;
+      e.preventDefault();
+      el.scrollLeft = startScroll - dx;
+      const now = performance.now();
+      const dt = now - lastTime;
+      if (dt > 0) {
+        velocity = (e.clientX - lastX) / dt;
+        lastX = e.clientX;
+        lastTime = now;
+      }
+    };
+
+    const momentum = () => {
+      velocity *= 0.95;
+      el.scrollLeft -= velocity * 16;
+      if (Math.abs(velocity) > 0.02) {
+        raf = requestAnimationFrame(momentum);
+      } else {
+        raf = 0;
+        el.style.scrollSnapType = "";
+      }
+    };
+
+    const onUp = (e: PointerEvent) => {
+      if (pointerId !== e.pointerId) return;
+      if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+      pointerId = null;
+      el.style.cursor = "";
+      if (moved && Math.abs(velocity) > 0.05) {
+        raf = requestAnimationFrame(momentum);
+      } else {
+        el.style.scrollSnapType = "";
+      }
+    };
+
+    const onClick = (e: MouseEvent) => {
+      if (moved) {
+        e.preventDefault();
+        e.stopPropagation();
+        moved = false;
+      }
+    };
+
+    const onDragStart = (e: Event) => e.preventDefault();
+
+    el.addEventListener("pointerdown", onDown);
+    el.addEventListener("pointermove", onMove);
+    el.addEventListener("pointerup", onUp);
+    el.addEventListener("pointercancel", onUp);
+    el.addEventListener("click", onClick, true);
+    el.addEventListener("dragstart", onDragStart);
+
+    return () => {
+      stopMomentum();
+      el.removeEventListener("pointerdown", onDown);
+      el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("pointerup", onUp);
+      el.removeEventListener("pointercancel", onUp);
+      el.removeEventListener("click", onClick, true);
+      el.removeEventListener("dragstart", onDragStart);
+    };
+  }, []);
+
   return (
     <section className="bg-secondary/60 py-20 lg:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
