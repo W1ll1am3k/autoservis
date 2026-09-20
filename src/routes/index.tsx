@@ -18,6 +18,7 @@ import {
   X,
   Check,
   ArrowUp,
+  Hand,
 } from "lucide-react";
 
 import heroImg from "@/assets/workshop-hero.jpg";
@@ -442,6 +443,70 @@ function Services() {
   );
 }
 
+const PRICES = [
+  { service: "Hodinová sazba mechanických prací", detail: "běžný servis a opravy", price: "od 850 Kč / hod." },
+  { service: "Výměna motorového oleje", detail: "práce bez materiálu", price: "od 700 Kč" },
+  { service: "Přezutí a vyvážení kol", detail: "kompletní sada osobního vozu", price: "od 900 Kč" },
+  { service: "Geometrie kol", detail: "kontrola a seřízení náprav", price: "od 1 000 Kč" },
+  { service: "Diagnostika vozidla", detail: "načtení závad a základní kontrola", price: "od 600 Kč" },
+  { service: "Servis klimatizace", detail: "kontrola systému bez chladiva", price: "od 1 200 Kč" },
+];
+
+function PriceList() {
+  return (
+    <section id="cenik" className="py-20 lg:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <p className="eyebrow" data-reveal>
+          Orientační ceník
+        </p>
+        <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
+          <h2 className="max-w-3xl text-3xl font-extrabold leading-[1.1] sm:text-4xl lg:text-5xl" data-reveal>
+            Jasné ceny za <span className="text-primary">servisní práce</span>
+          </h2>
+          <p className="max-w-md text-sm leading-relaxed text-muted-foreground" data-reveal>
+            Konečnou cenu vždy potvrdíme před zahájením práce podle typu vozu a rozsahu opravy.
+          </p>
+        </div>
+
+        <div className="mt-12 overflow-hidden rounded-3xl border border-primary/45 bg-card" data-reveal>
+          <div className="grid grid-cols-[1fr_auto] gap-4 border-b border-border px-5 py-5 sm:px-8">
+            <h3 className="text-lg font-extrabold sm:text-xl">Služba</h3>
+            <h3 className="text-right text-lg font-extrabold sm:text-xl">Cena</h3>
+          </div>
+          <div className="px-5 sm:px-8">
+            {PRICES.map((item) => (
+              <div
+                key={item.service}
+                className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-border py-4 last:border-b-0"
+              >
+                <div className="min-w-0">
+                  <p className="text-sm font-bold sm:text-base">{item.service}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground sm:text-sm">{item.detail}</p>
+                </div>
+                <p className="text-right text-sm font-extrabold text-primary sm:text-base">{item.price}</p>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col gap-5 border-t border-border bg-secondary/45 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+            <a
+              href="#kontakty"
+              className="group inline-flex w-fit items-center gap-3 rounded-full bg-primary py-2 pl-5 pr-2 text-sm font-bold text-primary-foreground transition-transform hover:scale-[1.03]"
+            >
+              Nezávazná kalkulace
+              <span className="grid size-9 place-items-center rounded-full bg-primary-foreground/20 transition-transform group-hover:translate-x-1">
+                <ArrowRight className="size-4" />
+              </span>
+            </a>
+            <p className="text-xs leading-relaxed text-muted-foreground sm:max-w-sm sm:text-right">
+              Uvedené ceny jsou orientační a nezahrnují náhradní díly ani spotřební materiál.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const TEAM = [
   { title: "Servisní technik", text: "Pravidelná údržba a mechanické opravy", image: teamServiceImg },
   { title: "Péče o zákazníky", text: "Objednávky, kalkulace a předání vozu", image: teamCareImg },
@@ -632,7 +697,8 @@ function Certificates() {
 
         <div
           ref={scroller}
-          className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2"
+          aria-label="Certifikáty — tažením zobrazíte další"
+          className="no-scrollbar mt-12 flex cursor-grab snap-x snap-mandatory select-none gap-5 overflow-x-auto pb-2 active:cursor-grabbing"
         >
           {CERTS.map((c) => (
             <article
@@ -677,6 +743,9 @@ function Certificates() {
           >
             <ChevronRight className="size-5" />
           </button>
+          <span className="ml-2 hidden items-center gap-2 text-sm text-muted-foreground sm:inline-flex">
+            <Hand className="size-4" /> Tažením zobrazíte další
+          </span>
         </div>
       </div>
     </section>
@@ -849,6 +918,7 @@ function Index() {
         <Hero />
         <About />
         <Services />
+        <PriceList />
         <Team />
         <Certificates />
         <Place />
